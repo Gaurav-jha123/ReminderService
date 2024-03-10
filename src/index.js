@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const {PORT}=require('./config/serverConfig')
 const {sendBasicEmail}=require('./services/email-service')
-
+const jobs=require('../src/utils/cron-job');
 const app = express();
 const setupAndStartServer = () => {
     const app = express();
@@ -11,13 +11,14 @@ const setupAndStartServer = () => {
 
     app.listen(PORT, () => {
         console.log(`Server started at port ${PORT}`);
-        sendBasicEmail(
-            'ManishMehta@gmail.com',
-            'satyam987321@gmail.com',
-            'Escalations@Cvent.in',
-            'IMPORTANT, hey satyam please see this immediately'
+        // sendBasicEmail(
+        //     'ManishMehta@gmail.com',
+        //     'satyam987321@gmail.com',
+        //     'Escalations@Cvent.in',
+        //     'IMPORTANT, hey satyam please see this immediately'
         
-        )
+        // )
+        jobs();
     });
 
 
